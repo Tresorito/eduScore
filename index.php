@@ -1,3 +1,5 @@
+<?=require 'auth.php'?>
+
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="en">
   <head>
@@ -10,12 +12,16 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/style.css">
-    <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
   </head>
   <body>
+<<<<<<< HEAD:index.html
     <a class="banner banner-top"  target="_blank"></a>
     <div class="preloader">
       <div class="preloader-logo"><a class="brand" href="index.html"><img class="brand-logo-dark" src="images/eduscore-high-resolution-logo (2) (1).png" alt="" margin-left= "800" width="245" height="50"/><img class="brand-logo-light" src="images/logo-inverse-245x50.png" alt="" width="245" height="50"/></a>
+=======
+    <div class="preloader">
+      <div class="preloader-logo"><a class="brand" href="index.php"><img class="brand-logo-dark" src="images/logo.png" alt="" margin-left= "800" width="245" height="50"/><img class="brand-logo-light" src="images/logo.png" alt="" width="245" height="50"/></a>
+>>>>>>> 121bcf36bb9fea0feb75573051edd8c022da47e9:index.php
       </div>
       <div class="preloader-body">
         <div class="cssload-container">
@@ -36,13 +42,13 @@
                   <!-- RD Navbar Toggle-->
                   <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                   <!-- RD Navbar Brand-->
-                  <div class="rd-navbar-brand"><a class="brand" href="index.html"><img class="brand-logo-dark" src="images/eduscore-high-resolution-logo (2) (1).png" alt="" margin-left= -300 width="500" height="100" /></a>
+                  <div class="rd-navbar-brand"><a class="brand" href="index.php"><img class="brand-logo-dark" src="images/logo.png" alt="" margin-left= -300 width="500" height="100" /></a>
                   </div>
                 </div>
                 <div class="rd-navbar-nav-wrap">
                   <!-- RD Navbar Nav		-->
                   <ul class="rd-navbar-nav">
-                    <li class="rd-nav-item active"><a class="rd-nav-link" href="index.html">Acceuil</a>
+                    <li class="rd-nav-item active"><a class="rd-nav-link" href="index.php">Acceuil</a>
                     </li>
                     <li class="rd-nav-item"><a class="rd-nav-link" href="about.html">A propos</a>
                     </li>
@@ -50,6 +56,14 @@
                     </li>
                     <li class="rd-nav-item"><a class="rd-nav-link" href="contacts.html">Contacts</a>
                     </li>
+                    <?php
+                    if($username !== null) {
+                      ?>
+                      <li class="rd-nav-item"><?=$username?> &nbsp;<a class="rd-nav-link" href="logout.php">Logout</a>
+                      </li>
+                      <?php
+                    }
+                    ?>
                   </ul>
                 </div>
               </div>
@@ -57,6 +71,35 @@
           </nav>
         </div>
       </header>
+<?php
+if($username === null) {
+// User is not logged in, show the login form
+?>
+<div class="login-form">
+  <form action="index.php" method="POST">
+    <div class="title">Authentification</div>
+    <?php
+    if ($message) {
+      echo "<div class='sub-title'>$message</div>";
+    }
+    ?>
+    <div class="content">
+      <div class="input-field">
+        <input required type="text" name="username" placeholder="Nom d'utilisateur">
+      </div>
+      <div class="input-field">
+        <input required type="password" name="password" placeholder="Mot de passe">
+      </div>
+    </div>
+    <div class="action">
+      <input type='submit' name='register' value="Creer un compte">
+      <input type='submit' name='login' value="S'authentifier">
+    </div>
+  </form>
+</div>
+<?php
+} else {
+?>
       <section>
           <div>
             <img src="images/White Grey Black Minimalist Student Instagram Post.png" alt="">
@@ -119,7 +162,7 @@
                 </div>
               </article>
             </div>
-            <div class="col-xl-4 wow fadeIn" data-wow-delay=".4s"><img class="img-rounded" src="images/home-1-369x341.jpg" alt=""></div>
+            <div class="col-xl-4 wow fadeIn" data-wow-delay=".4s"><img class="img-rounded" src="images/logo.png" alt=""></div>
           </div>
         </div>
       </section>
@@ -170,10 +213,10 @@
             </div>
           </div><a class="button button-lg button-primary-gradient wow fadeIn" data-wow-delay=".2s" href="isga.ma"><span>Voir tous les cours</span></a>
         </div>
-      </section>
-     
-  
-      <!-- Page Footer--><a class="banner" href="https://www.templatemonster.com/website-templates/monstroid2.html" target="_blank"><img src="images/monstroid-big-2.jpg" alt="" height="0"></a>
+      </section>    
+<?php
+}
+?>
       <footer class="section footer-classic bg-gray-950">
         <div class="footer-classic-main ">
           <div class="container"> 
